@@ -105,4 +105,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Attach listeners on page load
     attachInputListeners();
+
+    document
+        .getElementById("downloadChartBtn")
+        .addEventListener("click", () => {
+            const canvas = document.getElementById("barChart");
+            const image = canvas.toDataURL("image/png"); // Convert canvas to image data URL
+
+            const link = document.createElement("a");
+            link.href = image;
+            link.download = "chart.png"; // Set the default file name
+            link.click(); // Trigger the download
+        });
 });
