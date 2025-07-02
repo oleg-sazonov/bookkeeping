@@ -1,0 +1,22 @@
+{
+    "name": "bookkeeping",
+    "version": "1.0.0",
+    "description": "## Overview The **Bookkeeping** project is a simple web application designed to help users manage and track their financial records. It is built using the latest version of Bootstrap for responsive design and includes custom CSS and JavaScript for additional styling and interactivity.",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/oleg-sazonov/bookkeeping.git"
+    },
+    "author": "Oleg Sazonov",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/oleg-sazonov/bookkeeping/issues"
+    },
+    "homepage": "https://github.com/oleg-sazonov/bookkeeping#readme",
+    "devDependencies": {
+        "jest": "^30.0.3"
+    }
+}
