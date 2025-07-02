@@ -14,6 +14,23 @@ document.addEventListener("DOMContentLoaded", function () {
         "december",
     ];
 
+    // input with id "username" on change
+    const usernameInput = document.getElementById("username");
+    if (usernameInput) {
+        usernameInput.addEventListener("input", function () {
+            const username = usernameInput.value.trim();
+
+            // regex to check if username has at least 1 capital letter, 1 lowercase letter, 1 number, 1 special character, and is at least 8 characters long
+            const usernameRegex =
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+            if (usernameRegex.test(username)) {
+                usernameInput.style.borderColor = "green";
+            } else {
+                usernameInput.style.borderColor = "red";
+            }
+        });
+    }
+
     function getMonthlyData() {
         const incomeData = [];
         const expensesData = [];
