@@ -1,4 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
+    const usernameInput = document.getElementById("username");
+    usernameInput?.addEventListener("input", () => {
+        const username = usernameInput.value.trim();
+        const usernameRegex =
+            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        usernameInput.style.borderColor = usernameRegex.test(username)
+            ? "green"
+            : "red";
+    });
+
     const months = [
         "january",
         "february",
@@ -14,15 +24,25 @@ document.addEventListener("DOMContentLoaded", () => {
         "december",
     ];
 
-    const usernameInput = document.getElementById("username");
-    usernameInput?.addEventListener("input", () => {
-        const username = usernameInput.value.trim();
-        const usernameRegex =
-            /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-        usernameInput.style.borderColor = usernameRegex.test(username)
-            ? "green"
-            : "red";
-    });
+    const addRandomValuesForIncomesAndExpenses = () => {
+        months.forEach((month) => {
+            const incomeInput = document.getElementById(`income-${month}`);
+            const expensesInput = document.getElementById(`expenses-${month}`);
+
+            if (incomeInput && expensesInput) {
+                // Generate random values
+                const expenses =
+                    Math.floor(Math.random() * (800 - 200 + 1)) + 200; // 200–800
+                const income =
+                    Math.floor(Math.random() * (1000 - (expenses + 1))) +
+                    (expenses + 1); // Greater than expenses
+
+                // Set default values
+                incomeInput.value = income;
+                expensesInput.value = expenses;
+            }
+        });
+    };
 
     const getMonthlyData = () => {
         const incomeData = months.map((month) =>
@@ -74,11 +94,14 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     months.forEach((month) => {
+        addRandomValuesForIncomesAndExpenses();
         const incomeInput = document.getElementById(`income-${month}`);
         const expensesInput = document.getElementById(`expenses-${month}`);
         incomeInput?.addEventListener("input", updateChart);
         expensesInput?.addEventListener("input", updateChart);
     });
+
+    updateChart();
 
     document
         .getElementById("downloadChartBtn")
