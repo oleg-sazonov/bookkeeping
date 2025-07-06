@@ -113,4 +113,35 @@ document.addEventListener("DOMContentLoaded", () => {
             link.download = "chart.png";
             link.click();
         });
+
+    const sendEmailWithChart = async (email, chartImageBase64) => {
+        try {
+            const response = await fetch("http://localhost:3000/send-email", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({ email, chartImage: chartImageBase64 }),
+            });
+
+            if (response.ok) {
+                console.log("Email sent successfully!");
+            } else {
+                console.error("Failed to send email.");
+            }
+        } catch (error) {
+            console.error("Error sending email:", error);
+        }
+    };
+
+    // Example usage:
+    const emailInput = document.getElementById("email");
+    const emailButton = document.getElementById("sendEmailButton");
+    const chartCanvas = document.getElementById("barChart"); // Assuming chart is rendered on a canvas
+    const chartImageBase64 = chartCanvas.toDataURL("image/png");
+
+    emailButton.addEventListener("click", () => {
+        const email = emailInput.value.trim();
+        sendEmailWithChart(email, chartImageBase64);
+    });
 });

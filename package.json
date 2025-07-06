@@ -18,5 +18,10 @@
     "homepage": "https://github.com/oleg-sazonov/bookkeeping#readme",
     "devDependencies": {
         "jest": "^30.0.3"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^5.1.0",
+        "nodemailer": "^7.0.4"
     }
 }

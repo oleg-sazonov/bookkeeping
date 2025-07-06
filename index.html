@@ -416,13 +416,30 @@
                 <div id="chart-tab-content">
                     <canvas id="barChart" width="400" height="200"></canvas>
                 </div>
-                <!--Bootstrap button with the label "Download"-->
-                <button
+                <!--Bootstrap email input with id "email"-->
+            <div class="input-group mt-3">
+                    <span class="input-group-text">Email</span>
+                    <input
+                        type="email"
+                        id="email"
+                        class="form-control"
+                        placeholder="Enter your email"
+                    />
+                    <!--Bootstrap button with the label "Send Email" and id "sendEmailButton"-->    
+                    <button
+                        class="btn btn-success"
+                        type="submit"
+                        id="sendEmailButton"
+                    >
+                        Send Email
+                    </button>
+            </div>
+            <!--Bootstrap button with the label "Download"-->
+            <button
                 class="btn btn-primary mt-3"
                 id="downloadChartBtn"
-                >Download
-                </button>
-            </div>
+            >Download
+            </button>
         </main>
         <!-- Footer -->
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
