@@ -134,14 +134,20 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     };
 
-    // Example usage:
     const emailInput = document.getElementById("email");
     const emailButton = document.getElementById("sendEmailButton");
     const chartCanvas = document.getElementById("barChart"); // Assuming chart is rendered on a canvas
-    const chartImageBase64 = chartCanvas.toDataURL("image/png");
 
     emailButton.addEventListener("click", () => {
         const email = emailInput.value.trim();
+        if (!email) {
+            console.error("Please enter a valid email address.");
+            return;
+        }
+
+        // Generate the Base64 image string inside the click event listener
+        const chartImageBase64 = chartCanvas.toDataURL("image/png");
+
         sendEmailWithChart(email, chartImageBase64);
     });
 });
