@@ -2,16 +2,29 @@ import express from "express";
 import bodyParser from "body-parser";
 import nodemailer from "nodemailer";
 import cors from "cors";
+import validator from "validator";
 import "dotenv/config";
 
 const app = express();
 
 app.use(express.json());
-app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
 
 app.post("/send-email", async (req, res) => {
     const { email, chartImage } = req.body;
+    const base64Regex = /^data:image\/png;base64,[A-Za-z0-9+/=]+$/;
+
+    if (!validator.isEmail(email)) {
+        return res.status(400).send("Invalid email address.");
+    }
+    if (!base64Regex.test(chartImage)) {
+        return res.status(400).send("Invalid chart image.");
+    }
+    if (!process.env.USER || !process.env.API_KEY) {
+        throw new Error("Environment variables USER and API_KEY must be set.");
+    }
+
     console.log("Send email works with email:", { email, chartImage });
 
     try {
